@@ -1,7 +1,7 @@
 # Личный проект «Пиксель хантер» [![Build status][travis-image]][travis-url]
 
 * Студент: [Игорь Яруткин](https://up.htmlacademy.ru/ecmascript/1/user/145716).
-* Наставник: `Неизвестно`.
+* Наставник: [Софья Ильинова](https://htmlacademy.ru/profile/i).
 
 ---
 
