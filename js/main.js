@@ -1,16 +1,15 @@
+
+import introElement from './intro';
+import greetingElement from './greeting';
+import rulesElement from './rules';
+import game1Element from './game-1';
+import game2Element from './game-2';
+import game3Element from './game-3';
+import statsElement from './stats';
+
 ( () => {
 
-  const loadTemplate = (templateName) => {
-    const node = document.createElement('span');
-    const template = document.getElementById(templateName);
-    const content = template.content ? template.content : template;
-    node.appendChild(content);
-    return node.cloneNode(true);
-  };
-
-
   // Rules
-  const rulesElement = loadTemplate('rules');
   const rulesSubmit = rulesElement.querySelector('.rules__button');
   const rulesInput = rulesElement.querySelector('.rules__input');
 
@@ -30,13 +29,13 @@
   mainElement.after(switcher);
 
   const slides = [
-    loadTemplate('intro'),
-    loadTemplate('greeting'),
+    introElement,
+    greetingElement,
     rulesElement,
-    loadTemplate('game-1'),
-    loadTemplate('game-2'),
-    loadTemplate('game-3'),
-    loadTemplate('stats')
+    game1Element,
+    game2Element,
+    game3Element,
+    statsElement
   ];
   let current = -1;
 
