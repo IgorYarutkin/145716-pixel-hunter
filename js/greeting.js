@@ -3,9 +3,14 @@
  */
 
 import getElementFromTemplate from './create-element';
+import render from './render';
+import getRulesElement from './rules';
 
-const greetingElement = getElementFromTemplate(
-    `<div class="greeting  central--blur">
+const getGreetingElement = () => {
+
+  // Создание элемента greeting
+  const element = getElementFromTemplate(`
+    <div class="greeting  central--blur">
       <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
       <h1 class="greeting__asterisk">*</h1>
       <div class="greeting__challenge">
@@ -18,6 +23,20 @@ const greetingElement = getElementFromTemplate(
       </div>
       <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
     </div>`
-);
+  );
 
-export default greetingElement;
+  // Блок обработчика переключения на блок rules
+  // Обработчик
+  const changeToRules = () => {
+    const rulesElement = getRulesElement();
+    render(rulesElement);
+  };
+  // Установка обработчика
+  const greetingContinue = element.querySelector('.greeting__continue');
+  greetingContinue.addEventListener('click', changeToRules);
+
+  return element;
+
+};
+
+export default getGreetingElement;
