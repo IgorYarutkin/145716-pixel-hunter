@@ -6,6 +6,67 @@ import getGame2Element from './game-2';
  * HTML-элемент на основе блока #game-1
  */
 
+const gameData = {
+  title: 'Угадайте для каждого изображения фото или рисунок?',
+  timer: 'NN',
+  options: [
+    {
+      src: 'http://placehold.it/468x458',
+      width: '468',
+      height: '458',
+      alt: 'Option 1'
+    },
+    {
+      src: 'http://placehold.it/468x458',
+      width: '468',
+      height: '458',
+      alt: 'Option 2'
+    }
+  ],
+  lives: {
+    left: 2,
+    total: 3
+  },
+  stats: ['wrong', 'slow', 'fast', 'correct', 'unknown', 'unknown', 'unknown', 'unknown', 'unknown', 'unknown'],
+};
+
+const renderLivesIcons = (data) => {
+
+  let icons = [];
+  for (let i = data.total; i > 0; i--) {
+    let type = i > data.left ? 'empty' : 'full';
+    icons.push(`<img src="img/heart__${type}.svg" class="game__heart" alt="Life" width="32" height="32">`);
+  }
+  return icons.join('');
+};
+
+const renderlabelIcon = (type, i) => {
+
+  return `<label class="game__answer game__answer--${type}">
+    <input name="question${i + 1}" type="radio" value="${type}">
+    <span>${type === 'photo' ? 'Фото' : 'Рисунок'}</span>
+    </label>`;
+};
+
+const renderGameOption = (data) => {
+
+  return data.map( (option, i) => {
+    return `
+        <div class="game__option">
+          <img src=${option.src} alt=${option.alt} width=${option.width} height=${option.height}>
+          ${renderlabelIcon('photo', i)}
+          ${renderlabelIcon('paint', i)}
+        </div>`;
+  }).join('');
+};
+
+const renderStatsResult = (data) => {
+
+  const item = data.map( (status) => `<li class="stats__result stats__result--${status}"></li>`).join('');
+
+  return `<ul class="stats">${item}</ul>`;
+};
+
 const getGame1Element = () => {
 
   const element = getElementFromTemplate(`
@@ -16,52 +77,18 @@ const getGame1Element = () => {
             <img src="img/logo_small.png" width="101" height="44">
           </span>
       </div>
-      <h1 class="game__timer">NN</h1>
+      <h1 class="game__timer">${gameData.timer}</h1>
       <div class="game__lives">
-        <img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">
-        <img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">
-        <img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">
+        ${renderLivesIcons(gameData.lives)}
       </div>
     </header>
     <div class="game">
-      <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
+      <p class="game__task">${gameData.title}</p>
       <form class="game__content">
-        <div class="game__option">
-          <img src="http://placehold.it/468x458" alt="Option 1" width="468" height="458">
-          <label class="game__answer game__answer--photo">
-            <input name="question1" type="radio" value="photo">
-            <span>Фото</span>
-          </label>
-          <label class="game__answer game__answer--paint">
-            <input name="question1" type="radio" value="paint">
-            <span>Рисунок</span>
-          </label>
-        </div>
-        <div class="game__option">
-          <img src="http://placehold.it/468x458" alt="Option 2" width="468" height="458">
-          <label class="game__answer  game__answer--photo">
-            <input name="question2" type="radio" value="photo">
-            <span>Фото</span>
-          </label>
-          <label class="game__answer  game__answer--paint">
-            <input name="question2" type="radio" value="paint">
-            <span>Рисунок</span>
-          </label>
-        </div>
+        ${renderGameOption(gameData.options)}
       </form>
       <div class="stats">
-        <ul class="stats">
-          <li class="stats__result stats__result--wrong"></li>
-          <li class="stats__result stats__result--slow"></li>
-          <li class="stats__result stats__result--fast"></li>
-          <li class="stats__result stats__result--correct"></li>
-          <li class="stats__result stats__result--unknown"></li>
-          <li class="stats__result stats__result--unknown"></li>
-          <li class="stats__result stats__result--unknown"></li>
-          <li class="stats__result stats__result--unknown"></li>
-          <li class="stats__result stats__result--unknown"></li>
-          <li class="stats__result stats__result--unknown"></li>
-        </ul>
+        ${renderStatsResult(gameData.stats)}
       </div>
     </div>`
   );
@@ -73,7 +100,7 @@ const getGame1Element = () => {
     render(game2Element);
   };
   // Установка обработчика
-  const gameAnswerBlocks = element.querySelectorAll('.game__answer');
+  const gameAnswerBlocks = element.querySelectorAll('.game__answer input');
   for (const item of gameAnswerBlocks) {
     item.addEventListener('click', changeToGame2);
   }
