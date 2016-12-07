@@ -1,5 +1,3 @@
-import render from './render';
-import getIntroElement from './intro';
+import renderIntroElement from './intro';
 
-const introElement = getIntroElement();
-render(introElement);
+renderIntroElement();
