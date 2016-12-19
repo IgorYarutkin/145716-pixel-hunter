@@ -299,5 +299,141 @@ export const levelData = [
         }
       ]
     }
+  },
+  {
+    title: 'А теперь найдите изображение среди рисунков',
+    timer: '05',
+    question: {
+      type: 'triple',
+      content: [
+        {
+          src: 'http://placehold.it/304x455',
+          width: '304',
+          height: '455',
+          alt: 'Option 1'
+        },
+        {
+          src: 'http://placehold.it/304x455',
+          width: '304',
+          height: '455',
+          alt: 'Option 2',
+          selected: true
+        },
+        {
+          src: 'http://placehold.it/304x455',
+          width: '304',
+          height: '455',
+          alt: 'Option 3'
+        }
+      ],
+    }
+  },
+  {
+    title: 'Проверь свое чувство реальности еще раз... Это фото или рисунок?',
+    timer: '06',
+    question: {
+      type: 'wide',
+      content: [
+        {
+          src: 'http://placehold.it/705x455',
+          width: '705',
+          height: '455',
+          alt: 'Option 1'
+        }
+      ]
+    },
+    lives: {
+      left: 2,
+      total: 3
+    }
+  },
+  {
+    title: 'Возможно ты справился с предыдущим заданием. Но в этот раз будет сложнее',
+    timer: '07',
+    question: {
+      type: 'wide',
+      content: [
+        {
+          src: 'http://placehold.it/705x455',
+          width: '705',
+          height: '455',
+          alt: 'Option 1'
+        }
+      ]
+    },
+    lives: {
+      left: 2,
+      total: 3
+    }
+  },
+  {
+    title: 'Здесь должно быть полегче',
+    timer: '08',
+    question: {
+      type: 'casual',
+      content: [
+        {
+          src: 'http://placehold.it/468x458',
+          width: '468',
+          height: '458',
+          alt: 'Option 1'
+        },
+        {
+          src: 'http://placehold.it/468x458',
+          width: '468',
+          height: '458',
+          alt: 'Option 2'
+        }
+      ]
+    }
+  },
+  {
+    title: `Иногда кажется, что оба варианты правильные...  
+      Может это тот самый случай?`,
+    timer: '09',
+    question: {
+      type: 'wide',
+      content: [
+        {
+          src: 'http://placehold.it/705x455',
+          width: '705',
+          height: '455',
+          alt: 'Option 1'
+        }
+      ]
+    },
+    lives: {
+      left: 2,
+      total: 3
+    }
+  },
+  {
+    title: `И заключительное испытание.
+      Рисунок? Или фото? Или рисунок?`,
+    timer: '10',
+    question: {
+      type: 'triple',
+      content: [
+        {
+          src: 'http://placehold.it/304x455',
+          width: '304',
+          height: '455',
+          alt: 'Option 1'
+        },
+        {
+          src: 'http://placehold.it/304x455',
+          width: '304',
+          height: '455',
+          alt: 'Option 2',
+          selected: true
+        },
+        {
+          src: 'http://placehold.it/304x455',
+          width: '304',
+          height: '455',
+          alt: 'Option 3'
+        }
+      ],
+    }
   }
 ];
