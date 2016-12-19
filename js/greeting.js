@@ -4,14 +4,14 @@
 
 import getElementFromTemplate from './create-element';
 import render from './render';
-import getRulesElement from './rules';
+import renderRulesElement from './rules';
 
 const greetingData = {
   title: 'Лучшие художники-фотореалисты бросают&nbsp;тебе&nbsp;вызов!',
   description: 'Правила игры просты.<br>Нужно отличить рисунок&nbsp;от фотографии и сделать выбор.<br>Задача кажется тривиальной, но не думай, что все так просто.<br>Фотореализм обманчив и коварен.<br>Помни, главное — смотреть очень внимательно.'
 };
 
-const getGreetingElement = () => {
+const renderGreetingElement = () => {
   // Создание элемента greeting
   const element = getElementFromTemplate(`
     <div class="greeting  central--blur">
@@ -28,15 +28,14 @@ const getGreetingElement = () => {
   // Блок обработчика переключения на блок rules
   // Обработчик
   const changeToRules = () => {
-    const rulesElement = getRulesElement();
-    render(rulesElement);
+    renderRulesElement();
   };
   // Установка обработчика
   const greetingContinue = element.querySelector('.greeting__continue');
   greetingContinue.addEventListener('click', changeToRules);
 
-  return element;
+  return render(element);
 
 };
 
-export default getGreetingElement;
+export default renderGreetingElement;

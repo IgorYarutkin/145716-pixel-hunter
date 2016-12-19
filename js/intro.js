@@ -1,6 +1,6 @@
 import getElementFromTemplate from './create-element';
 import render from './render';
-import getGreetingElement from './greeting';
+import renderGreetingElement from './greeting';
 
 const introData = {
   note: 'Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.'
@@ -10,7 +10,7 @@ const introData = {
  * HTML-элемент на основе блока #intro
  * @return {HTMLElement} element
  */
-const getIntroElement = () => {
+const renderIntroElement = () => {
   const element = getElementFromTemplate(`
     <div id="intro" class="intro">
       <h1 class="intro__asterisk">*</h1>
@@ -23,15 +23,14 @@ const getIntroElement = () => {
    * Обработчик
    */
   const changeToGreetings = () => {
-    const greetingElement = getGreetingElement();
-    render(greetingElement);
+    renderGreetingElement();
   };
   // Установка обработчика
   const asterisk = element.querySelector('.intro__asterisk');
   asterisk.addEventListener('click', changeToGreetings);
 
 
-  return element;
+  return render(element);
 };
 
-export default getIntroElement;
+export default renderIntroElement;
