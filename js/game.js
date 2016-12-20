@@ -437,3 +437,7 @@ export const levelData = [
     }
   }
 ];
+
+export const checkTimer = () => {
+  return '';
+};
