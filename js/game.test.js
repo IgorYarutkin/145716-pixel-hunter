@@ -24,6 +24,36 @@ describe('gameLevel', function () {
           assert.equal(
               'correct',
               checkAnswer(
+                [
+                  {
+                    image: {
+                      url: 'http://placehold.it/705x455',
+                      width: 705,
+                      height: 455
+                    },
+                    type: 'paint'
+                  },
+                  {
+                    image: {
+                      url: 'http://placehold.it/705x455',
+                      width: 705,
+                      height: 455
+                    },
+                    type: 'paint'
+                  },
+                ],
+                [
+                  'paint',
+                  'paint'
+                ]
+              )
+          );
+        });
+        it('should return "wrong" or "correct" according to concurrence type of image and answer', function () {
+          assert.equal(
+            'wrong',
+            checkAnswer(
+              [
                 {
                   image: {
                     url: 'http://placehold.it/705x455',
@@ -32,23 +62,19 @@ describe('gameLevel', function () {
                   },
                   type: 'paint'
                 },
-                  'paint'
-              )
-          );
-        });
-        it('should return "wrong" or "correct" according to concurrence type of image and answer', function () {
-          assert.equal(
-            'wrong',
-            checkAnswer(
-              {
-                image: {
-                  url: 'http://placehold.it/705x455',
-                  width: 705,
-                  height: 455
+                {
+                  image: {
+                    url: 'http://placehold.it/705x455',
+                    width: 705,
+                    height: 455
+                  },
+                  type: 'paint'
                 },
-                type: 'paint'
-              },
-              'photo'
+              ],
+              [
+                'paint',
+                'photo'
+              ]
             )
           );
         });
