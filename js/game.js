@@ -456,4 +456,4 @@ export const checkTimer = (timer) => {
 export const checkAnswer = () => {
 
   return '';
-}
+};
