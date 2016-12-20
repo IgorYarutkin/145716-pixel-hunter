@@ -446,13 +446,14 @@ export const checkTimer = (timer) => {
     answerStat = answerStatus.UNKNOWN;
   } else if (timer < 10) {
     answerStat = bonusType.FAST;
-  } else if (timer < 20) {
-    answerStat = answerStatus.CORRECT;
-  } else if (timer < 30) {
+  } else if (timer > 20) {
     answerStat = bonusType.SLOW;
-  } else {
-    answerStat = answerStatus.WRONG;
   }
 
   return answerStat;
 };
+
+export const checkAnswer = () => {
+
+  return '';
+}
