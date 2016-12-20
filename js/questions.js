@@ -3,7 +3,7 @@ import renderlabelIcon from './label-answers';
 const renderGameOption = (option, questionNumber) => {
   return `
         <div class="game__option">
-          <img src=${option.src} alt=${option.alt} width=${option.width} height=${option.height}>
+          <img src="${option.src}" alt="${option.alt}" width="${option.width}" height="${option.height}">
             ${renderlabelIcon('photo', questionNumber + 1)}
             ${renderlabelIcon('paint', questionNumber + 1)}
         </div>`;
@@ -12,7 +12,7 @@ const renderGameOption = (option, questionNumber) => {
 const renderGameOptionTriple = (option) => {
   return `
         <div class="game__option ${option.selected ? 'game__option--selected' : ''}">
-          <img src=${option.src} alt=${option.alt} width=${option.width} height=${option.height}>
+          <img src="${option.src}" alt="${option.alt}" width="${option.width}" height="${option.height}">
         </div>`;
 };
 
