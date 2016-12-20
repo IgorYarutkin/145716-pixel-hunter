@@ -6,6 +6,13 @@ describe('gameLevel', function () {
   describe('checkAnswer', function () {
 
     describe('checkTimer', function () {
+
+      it('should return "unknown", if timer 0 seconds and less or timer in not a number', function () {
+        assert.equal('unknown', checkTimer(0));
+      });
+      it('should return "unknown", if timer 0 seconds and less or timer in not a number', function () {
+        assert.equal('unknown', checkTimer(-5));
+      });
       it('should return "fast", if timer less than 10 seconds', function () {
         assert.equal('fast', checkTimer(8));
       });
@@ -13,28 +20,10 @@ describe('gameLevel', function () {
         assert.equal('correct', checkTimer(15));
       });
       it('should return "slow", if timer 20 seconds and more & less than 30 seconds', function () {
-        assert.equal('correct', checkTimer(22));
+        assert.equal('slow', checkTimer(22));
       });
       it('should return "wrong", if timer 30 seconds and more', function () {
         assert.equal('wrong', checkTimer(30));
-      });
-      it('should return "unknown", if timer 0 seconds and less or timer in not a number', function () {
-        assert.equal('unknown', checkTimer(0));
-      });
-      it('should return "unknown", if timer 0 seconds and less or timer in not a number', function () {
-        assert.equal('unknown', checkTimer(-5));
-      });
-      it('should return "unknown", if timer 0 seconds and less or timer in not a number', function () {
-        assert.equal('unknown', checkTimer('some string'));
-      });
-      it('should return "unknown", if timer 0 seconds and less or timer in not a number', function () {
-        assert.equal('unknown', checkTimer('' / 2));
-      });
-      it('should return "unknown", if timer 0 seconds and less or timer in not a number', function () {
-        assert.equal('unknown', checkTimer([]));
-      });
-      it('should return "unknown", if timer 0 seconds and less or timer in not a number', function () {
-        assert.equal('unknown', checkTimer({}));
       });
     });
   });
