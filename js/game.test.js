@@ -123,6 +123,83 @@ describe('gameLevel', function () {
           );
         });
       });
+
+      describe('checkAnswer (three image block)', function () {
+
+        it('should return "wrong" or "correct" according to concurrence type of only image and answer', function () {
+          assert.equal(
+            'correct',
+            checkAnswer(
+              [
+                {
+                  image: {
+                    url: 'http://placehold.it/705x455',
+                    width: 705,
+                    height: 455
+                  },
+                  type: 'paint'
+                },
+                {
+                  image: {
+                    url: 'http://placehold.it/705x455',
+                    width: 705,
+                    height: 455
+                  },
+                  type: 'photo'
+                },
+                {
+                  image: {
+                    url: 'http://placehold.it/705x455',
+                    width: 705,
+                    height: 455
+                  },
+                  type: 'paint'
+                },
+              ],
+              [
+                'photo'
+              ]
+            )
+          );
+        });
+        it('should return "wrong" or "correct" according to concurrence type of image and answer', function () {
+          assert.equal(
+            'wrong',
+            checkAnswer(
+              [
+                {
+                  image: {
+                    url: 'http://placehold.it/705x455',
+                    width: 705,
+                    height: 455
+                  },
+                  type: 'paint'
+                },
+                {
+                  image: {
+                    url: 'http://placehold.it/705x455',
+                    width: 705,
+                    height: 455
+                  },
+                  type: 'photo'
+                },
+                {
+                  image: {
+                    url: 'http://placehold.it/705x455',
+                    width: 705,
+                    height: 455
+                  },
+                  type: 'paint'
+                }
+              ],
+              [
+                'paint'
+              ]
+            )
+          );
+        });
+      });
+
     });
   });
 });
