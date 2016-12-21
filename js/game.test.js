@@ -10,27 +10,15 @@ describe('gameLevel', function () {
 
       it('should return "fast", if timer less than 10 seconds', function () {
         assert.equal('fast', checkTimer(0));
-      });
-      it('should return "fast", if timer less than 10 seconds', function () {
         assert.equal('fast', checkTimer(5));
-      });
-      it('should return "fast", if timer less than 10 seconds', function () {
         assert.equal('fast', checkTimer(9));
-      });
-      it('should return "fast", if timer less than 10 seconds', function () {
         assert.equal('fast', checkTimer(9.99));
       });
       it('should return "undefined", if timer 10 seconds and more but less 20 or equal it', function () {
-        assert.equal('undefined', checkTimer(10));
-      });
-      it('should return "undefined", if timer 10 seconds and more but less 20 or equal it', function () {
-        assert.equal('undefined', checkTimer(15));
-      });
-      it('should return "undefined", if timer 10 seconds and more but less 20 or equal it', function () {
-        assert.equal('undefined', checkTimer(19));
-      });
-      it('should return "undefined", if timer 10 seconds and more but less 20 or equal it', function () {
-        assert.equal('undefined', checkTimer(20));
+        assert.equal(undefined, checkTimer(10));
+        assert.equal(undefined, checkTimer(15));
+        assert.equal(undefined, checkTimer(19));
+        assert.equal(undefined, checkTimer(20));
       });
       it('should return "slow", if timer 20 seconds and more', function () {
         assert.equal('slow', checkTimer(20.99));
