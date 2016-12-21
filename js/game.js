@@ -442,9 +442,7 @@ export const checkTimer = (timer) => {
 
   let answerStat;
 
-  if (timer <= 0) {
-    answerStat = answerStatus.UNKNOWN;
-  } else if (timer < 10) {
+  if (timer < 10) {
     answerStat = bonusType.FAST;
   } else if (timer > 20) {
     answerStat = bonusType.SLOW;
@@ -453,7 +451,22 @@ export const checkTimer = (timer) => {
   return answerStat;
 };
 
-export const checkAnswer = () => {
+export const checkAnswer = (questions, choice) => {
 
-  return '';
+  const check = questions.map(
+    (question, index) => {
+      if (question.type === choice[index]) {
+        return 'correct';
+      } else {
+        return 'wrong';
+      }
+    }
+  );
+  if (check.indexOf('wrong') === -1) {
+    return 'correct';
+  } else {
+    return 'wrong';
+  }
 };
+
+console.log(checkAnswer([1, 3, 5, 7], [1, 3, 5, 7]));
