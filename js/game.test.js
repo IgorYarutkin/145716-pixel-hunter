@@ -20,7 +20,7 @@ describe('gameLevel', function () {
         assert.equal(undefined, checkTimer(19));
         assert.equal(undefined, checkTimer(20));
       });
-      it('should return "slow", if timer 20 seconds and more', function () {
+      it('should return "slow", if timer more than 20 seconds', function () {
         assert.equal('slow', checkTimer(20.99));
       });
     });
