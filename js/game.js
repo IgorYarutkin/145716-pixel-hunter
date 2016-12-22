@@ -453,20 +453,35 @@ export const checkTimer = (timer) => {
 
 export const checkAnswer = (questions, choice) => {
 
-  const check = questions.map(
+  return questions.every(
     (question, index) => {
-      if (question.type === choice[index]) {
-        return 'correct';
-      } else {
-        return 'wrong';
-      }
-    }
-  );
-  if (check.indexOf('wrong') === -1) {
-    return 'correct';
-  } else {
-    return 'wrong';
-  }
+      return question.type === choice[index]
+    })
+    ? 'correct'
+    : 'wrong';
 };
 
-console.log(checkAnswer([1, 3, 5, 7], [1, 3, 5, 7]));
+console.log(checkAnswer(
+  [
+    {
+      image: {
+        url: 'http://placehold.it/705x455',
+        width: 705,
+        height: 455
+      },
+      type: 'paint'
+    },
+    {
+      image: {
+        url: 'http://placehold.it/705x455',
+        width: 705,
+        height: 455
+      },
+      type: 'photo'
+    },
+  ],
+  [
+    'photo',
+    'photo'
+  ]
+));
