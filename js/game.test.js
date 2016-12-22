@@ -165,9 +165,7 @@ describe('gameLevel', function () {
                   type: 'paint'
                 },
               ],
-              [
                 'photo'
-              ]
             )
           );
         });
@@ -201,9 +199,7 @@ describe('gameLevel', function () {
                   type: 'paint'
                 }
               ],
-              [
                 'paint'
-              ]
             )
           );
         });
