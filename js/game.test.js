@@ -25,24 +25,107 @@ describe('gameLevel', function () {
       });
     });
 
-    describe('checkAnswerCorrectness', function () {
+    describe('checkAnswer', function () {
+      // @toDo Добавить в проверку casual и wide данные целого уровня
 
-      describe('checkAnswer (one image block)', function () {
+      describe('for casual questions', function () {
 
         it('should return "wrong" or "correct" according to concurrence type of image and answer', function () {
           assert.equal(
             'correct',
             checkAnswer(
+              {
+                title: 'Угадайте для каждого изображения фото или рисунок?',
+                timer: '01',
+                question: {
+                  type: 'casual',
+                  content: [
+                    {
+                      src: 'http://placehold.it/468x458',
+                      width: '468',
+                      height: '458',
+                      alt: 'Option 1',
+                      imageType: 'photo'
+                    },
+                    {
+                      src: 'http://placehold.it/468x458',
+                      width: '468',
+                      height: '458',
+                      alt: 'Option 2',
+                      imageType: 'photo'
+                    }
+                  ]
+                }
+              },
               [
-                {
-                  image: {
-                    url: 'http://placehold.it/705x455',
-                    width: 705,
-                    height: 455
-                  },
-                  type: 'paint'
+                'photo',
+                'photo'
+              ]
+            )
+          );
+        });
+        it('should return "wrong" or "correct" according to concurrence type of image and answer', function () {
+          assert.equal(
+            'wrong',
+            checkAnswer(
+              {
+                title: 'Угадайте для каждого изображения фото или рисунок?',
+                timer: '01',
+                question: {
+                  type: 'casual',
+                  content: [
+                    {
+                      src: 'http://placehold.it/468x458',
+                      width: '468',
+                      height: '458',
+                      alt: 'Option 1',
+                      imageType: 'photo'
+                    },
+                    {
+                      src: 'http://placehold.it/468x458',
+                      width: '468',
+                      height: '458',
+                      alt: 'Option 2',
+                      imageType: 'paint'
+                    }
+                  ]
+                }
+              },
+              [
+                'photo',
+                'photo'
+              ]
+            )
+          );
+        });
+      });
+
+      describe('for wide questions', function () {
+
+        it('should return "wrong" or "correct" according to concurrence type of image and answer', function () {
+          assert.equal(
+            'correct',
+            checkAnswer(
+              {
+                title: 'Угадай, фото или рисунок?',
+                timer: '02',
+                question: {
+                  type: 'wide',
+                  content: [
+                    {
+                      src: 'http://placehold.it/705x455',
+                      width: '705',
+                      height: '455',
+                      alt: 'Option 1',
+                      imageType: 'paint'
+                    }
+                  ]
                 },
-              ],
+                lives: {
+                  left: 2,
+                  total: 3
+                }
+              },
               [
                 'paint'
               ]
@@ -53,16 +136,26 @@ describe('gameLevel', function () {
           assert.equal(
             'wrong',
             checkAnswer(
-              [
-                {
-                  image: {
-                    url: 'http://placehold.it/705x455',
-                    width: 705,
-                    height: 455
-                  },
-                  type: 'paint'
+              {
+                title: 'Угадай, фото или рисунок?',
+                timer: '02',
+                question: {
+                  type: 'wide',
+                  content: [
+                    {
+                      src: 'http://placehold.it/705x455',
+                      width: '705',
+                      height: '455',
+                      alt: 'Option 1',
+                      imageType: 'paint'
+                    }
+                  ]
+                },
+                lives: {
+                  left: 2,
+                  total: 3
                 }
-              ],
+              },
               [
                 'photo'
               ]
@@ -71,101 +164,46 @@ describe('gameLevel', function () {
         });
       });
 
-      describe('checkAnswer (two image block)', function () {
-
-        it('should return "wrong" or "correct" according to concurrence type of image and answer', function () {
-          assert.equal(
-              'correct',
-              checkAnswer(
-                [
-                  {
-                    image: {
-                      url: 'http://placehold.it/705x455',
-                      width: 705,
-                      height: 455
-                    },
-                    type: 'paint'
-                  },
-                  {
-                    image: {
-                      url: 'http://placehold.it/705x455',
-                      width: 705,
-                      height: 455
-                    },
-                    type: 'paint'
-                  },
-                ],
-                [
-                  'paint',
-                  'paint'
-                ]
-              )
-          );
-        });
-        it('should return "wrong" or "correct" according to concurrence type of image and answer', function () {
-          assert.equal(
-            'wrong',
-            checkAnswer(
-              [
-                {
-                  image: {
-                    url: 'http://placehold.it/705x455',
-                    width: 705,
-                    height: 455
-                  },
-                  type: 'paint'
-                },
-                {
-                  image: {
-                    url: 'http://placehold.it/705x455',
-                    width: 705,
-                    height: 455
-                  },
-                  type: 'paint'
-                },
-              ],
-              [
-                'paint',
-                'photo'
-              ]
-            )
-          );
-        });
-      });
-
-      describe('checkAnswer (three image block)', function () {
+      describe('triple questions', function () {
 
         it('should return "wrong" or "correct" according to concurrence type of only image and answer', function () {
           assert.equal(
             'correct',
             checkAnswer(
+              {
+                title: 'Найдите рисунок среди изображений',
+                timer: '03',
+                question: {
+                  type: 'triple',
+                  content: [
+                    {
+                      src: 'http://placehold.it/304x455',
+                      width: '304',
+                      height: '455',
+                      alt: 'Option 1',
+                      imageType: 'paint'
+                    },
+                    {
+                      src: 'http://placehold.it/304x455',
+                      width: '304',
+                      height: '455',
+                      alt: 'Option 2',
+                      selected: true,
+                      imageType: 'photo'
+                    },
+                    {
+                      src: 'http://placehold.it/304x455',
+                      width: '304',
+                      height: '455',
+                      alt: 'Option 3',
+                      imageType: 'paint'
+                    }
+                  ],
+                }
+              },
               [
-                {
-                  image: {
-                    url: 'http://placehold.it/705x455',
-                    width: 705,
-                    height: 455
-                  },
-                  type: 'paint'
-                },
-                {
-                  image: {
-                    url: 'http://placehold.it/705x455',
-                    width: 705,
-                    height: 455
-                  },
-                  type: 'photo'
-                },
-                {
-                  image: {
-                    url: 'http://placehold.it/705x455',
-                    width: 705,
-                    height: 455
-                  },
-                  type: 'paint'
-                },
-              ],
                 'photo'
+              ]
             )
           );
         });
@@ -173,33 +211,40 @@ describe('gameLevel', function () {
           assert.equal(
             'wrong',
             checkAnswer(
-              [
-                {
-                  image: {
-                    url: 'http://placehold.it/705x455',
-                    width: 705,
-                    height: 455
-                  },
-                  type: 'paint'
-                },
-                {
-                  image: {
-                    url: 'http://placehold.it/705x455',
-                    width: 705,
-                    height: 455
-                  },
-                  type: 'photo'
-                },
-                {
-                  image: {
-                    url: 'http://placehold.it/705x455',
-                    width: 705,
-                    height: 455
-                  },
-                  type: 'paint'
+              {
+                title: 'Найдите рисунок среди изображений',
+                timer: '03',
+                question: {
+                  type: 'triple',
+                  content: [
+                    {
+                      src: 'http://placehold.it/304x455',
+                      width: '304',
+                      height: '455',
+                      alt: 'Option 1',
+                      imageType: 'photo'
+                    },
+                    {
+                      src: 'http://placehold.it/304x455',
+                      width: '304',
+                      height: '455',
+                      alt: 'Option 2',
+                      selected: true,
+                      imageType: 'paint'
+                    },
+                    {
+                      src: 'http://placehold.it/304x455',
+                      width: '304',
+                      height: '455',
+                      alt: 'Option 3',
+                      imageType: 'paint'
+                    }
+                  ],
                 }
-              ],
+              },
+                [
                 'paint'
+                ]
             )
           );
         });
