@@ -473,75 +473,47 @@ export const checkTimer = (timer) => {
 export const checkAnswer = (level, answers) => {
 
   let isAllAnswersCorrect = 'undefined';
-  if (level.question.type === 'triple') {
-    // console.log('Проверка для triple');
-    // const uniqueType = level.question.content[0].imageType;
-    // @ToDo
-    // 1. Выбрать тип первого вопроса
-    // 2. Присвоить его значение переменной sameType, противоположное значение - oppositeType
-    // 3. Проверить isUniqueRight (переименовать). Если true, то оставить uniqueType тоже значение, если false присвоить значение oppositeType
-    // 4. Проверить ответ (первый элемент answers) с uniqueType. Если совпадает вернуть correct, если нет - wrong
-    let uniqueType = level.question.content[0].imageType === 'photo'
+
+  /**
+   *
+   * @param {array} array - массив типов изображения из всех ответов уровня
+   * @returns {string} - значение типа изображения, которое не повторяется
+   */
+  const findUnique = (array) => {
+    let unique = array[0] === 'photo'
       ? 'photo'
       : 'paint';
-    const oppositeType = uniqueType === 'photo'
+    const opposite= unique === 'photo'
       ? 'paint'
       : 'photo';
-    console.log(`uniqueType: ${uniqueType}`);
-    console.log(`oppositeType: ${oppositeType}`);
-    const isUniqueRight = level.question.content.slice(1).every(
-      (question) => {
-        console.log(question.imageType);
-        return question.imageType !== uniqueType
+    const isUniqueRight = array.slice(1).every(
+      (item) => {
+        return item !== unique
       });
-    console.log(`isUniqueRight: ${isUniqueRight}`);
-    uniqueType = isUniqueRight
-      ? uniqueType
-      : oppositeType;
-    console.log(`Final uniqueType: ${uniqueType}`);
+    unique = isUniqueRight
+      ? unique
+      : opposite;
+
+    return unique;
+  };
+
+  if (level.question.type === 'triple') {
+
+    const uniqueType = findUnique(level.question.content.map(
+      (question) => {
+        return question.imageType;
+      }
+    ));
     isAllAnswersCorrect = answers[0] === uniqueType
       ? 'correct'
       : 'wrong';
-    console.log(`isAllAnswersCorrect: ${isAllAnswersCorrect}`);
   } else {
-    // console.log('Проверка для casual и wide');
     isAllAnswersCorrect = level.question.content.every(
       (question, index) => {
         return question.imageType === answers[index]
       })
       ? 'correct'
       : 'wrong';
-    // console.log(isAllAnswersCorrect);
   }
   return isAllAnswersCorrect;
 };
-
-console.log(checkAnswer (
-  {
-    title: 'Угадайте для каждого изображения фото или рисунок?',
-    timer: '01',
-    question: {
-      type: 'casual',
-      content: [
-        {
-          src: 'http://placehold.it/468x458',
-          width: '468',
-          height: '458',
-          alt: 'Option 1',
-          imageType: 'photo'
-        },
-        {
-          src: 'http://placehold.it/468x458',
-          width: '468',
-          height: '458',
-          alt: 'Option 2',
-          imageType: 'photo'
-        }
-      ]
-    }
-  },
-  [
-    'photo',
-    'photo'
-  ]
-));
