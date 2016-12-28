@@ -477,43 +477,46 @@ export const checkAnswer = (level, answers) => {
   /**
    *
    * @param {array} array - массив типов изображения из всех ответов уровня
-   * @returns {string} - значение типа изображения, которое не повторяется
+   * @return {string} unique - значение типа изображения, которое не повторяется
    */
   const findUnique = (array) => {
-    let unique = array[0] === 'photo'
+    let photoNumber = 0;
+    let paintNumber = 0;
+
+    array.forEach(
+      (item) => {
+        if (item === 'photo') {
+          photoNumber++;
+        } else {
+          paintNumber++;
+        }
+      }
+    );
+    console.log(`photoNumber: ${photoNumber}`);
+    console.log(`paintNumber: ${paintNumber}`);
+
+    return photoNumber === 1
       ? 'photo'
       : 'paint';
-    const opposite= unique === 'photo'
-      ? 'paint'
-      : 'photo';
-    const isUniqueRight = array.slice(1).every(
-      (item) => {
-        return item !== unique
-      });
-    unique = isUniqueRight
-      ? unique
-      : opposite;
-
-    return unique;
   };
 
   if (level.question.type === 'triple') {
 
     const uniqueType = findUnique(level.question.content.map(
-      (question) => {
-        return question.imageType;
-      }
-    ));
-    isAllAnswersCorrect = answers[0] === uniqueType
-      ? 'correct'
-      : 'wrong';
+        (question) => {
+          return question.imageType;
+        }
+      )
+    );
+    isAllAnswersCorrect = (answers[0] === uniqueType);
   } else {
     isAllAnswersCorrect = level.question.content.every(
-      (question, index) => {
-        return question.imageType === answers[index]
-      })
-      ? 'correct'
-      : 'wrong';
+        (question, index) => {
+          return question.imageType === answers[index];
+        }
+      );
   }
-  return isAllAnswersCorrect;
+  return isAllAnswersCorrect
+    ? 'correct'
+    : 'wrong';
 };
