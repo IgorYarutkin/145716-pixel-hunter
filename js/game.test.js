@@ -1,6 +1,9 @@
 import assert from 'assert';
+import answerStatus from './data';
+import {bonusType} from './bonus-data';
 import {checkTimer} from './game';
 import {checkAnswer} from './game';
+import {recordGame} from './game';
 
 describe('gameLevel', function () {
 
@@ -250,6 +253,89 @@ describe('gameLevel', function () {
         });
       });
 
+    });
+  });
+
+  describe('recordGame', function () {
+
+    it('should return new record of game and decrease number of lives if it necessary', function () {
+      assert.equal(
+        {
+        livesTotal: 3,
+          lives: 2,
+          stats: [
+            {
+              status: answerStatus.WRONG
+            },
+            {
+              status: answerStatus.CORRECT,
+              bonus: bonusType.SLOW
+            },
+            {
+              status: answerStatus.CORRECT,
+              bonus: bonusType.FAST
+            }
+          ]
+        },
+        recordGame(
+          {
+            livesTotal: 3,
+            lives: 2,
+            stats: [
+              {
+                status: answerStatus.WRONG
+              },
+              {
+                status: answerStatus.CORRECT,
+                bonus: bonusType.SLOW
+              }
+            ]
+          },
+          {
+            status: answerStatus.CORRECT,
+            bonus: bonusType.FAST
+          }
+        )
+      );
+    });
+
+    it('should return new record of game and decrease number of lives if it necessary', function () {
+      assert.equal(
+        {
+          livesTotal: 3,
+          lives: 1,
+          stats: [
+            {
+              status: answerStatus.WRONG
+            },
+            {
+              status: answerStatus.CORRECT,
+              bonus: bonusType.SLOW
+            },
+            {
+              status: answerStatus.WRONG
+            }
+          ]
+        },
+        recordGame(
+          {
+            livesTotal: 3,
+            lives: 2,
+            stats: [
+              {
+                status: answerStatus.WRONG
+              },
+              {
+                status: answerStatus.CORRECT,
+                bonus: bonusType.SLOW
+              }
+            ]
+          },
+          {
+            status: answerStatus.WRONG
+          }
+        )
+      );
     });
   });
 });

@@ -1,4 +1,4 @@
-import {answerStatus} from './data';
+import answerStatus from './data';
 import {bonusType} from './bonus-data';
 
 /**
@@ -492,8 +492,6 @@ export const checkAnswer = (level, answers) => {
         }
       }
     );
-    console.log(`photoNumber: ${photoNumber}`);
-    console.log(`paintNumber: ${paintNumber}`);
 
     return photoNumber === 1
       ? 'photo'
@@ -519,4 +517,8 @@ export const checkAnswer = (level, answers) => {
   return isAllAnswersCorrect
     ? 'correct'
     : 'wrong';
+};
+
+export const recordGame = () => {
+  return {};
 };
