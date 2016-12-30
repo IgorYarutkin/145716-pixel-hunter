@@ -33,7 +33,7 @@ describe('gameLevel', function () {
 
       describe('for casual questions', function () {
 
-        it('should return "wrong" or "correct" according to concurrence type of image and answer', function () {
+        it('should return "correct" if both choises are right', function () {
           assert.equal(
             'correct',
             checkAnswer(
@@ -67,7 +67,7 @@ describe('gameLevel', function () {
             )
           );
         });
-        it('should return "wrong" or "correct" according to concurrence type of image and answer', function () {
+        it('should return "wrong" if at least one choise is wrong', function () {
           assert.equal(
             'wrong',
             checkAnswer(
@@ -105,7 +105,7 @@ describe('gameLevel', function () {
 
       describe('for wide questions', function () {
 
-        it('should return "wrong" or "correct" according to concurrence type of image and answer', function () {
+        it('should return "correct" if choice is right', function () {
           assert.equal(
             'correct',
             checkAnswer(
@@ -135,7 +135,7 @@ describe('gameLevel', function () {
             )
           );
         });
-        it('should return "wrong" or "correct" according to concurrence type of image and answer', function () {
+        it('should return "wrong" if choice is wrong', function () {
           assert.equal(
             'wrong',
             checkAnswer(
@@ -169,7 +169,7 @@ describe('gameLevel', function () {
 
       describe('triple questions', function () {
 
-        it('should return "wrong" or "correct" according to concurrence type of only image and answer', function () {
+        it('should return "correct" if choice is right', function () {
           assert.equal(
             'correct',
             checkAnswer(
@@ -210,7 +210,7 @@ describe('gameLevel', function () {
             )
           );
         });
-        it('should return "wrong" or "correct" according to concurrence type of image and answer', function () {
+        it('should return "wrong" if choice is right', function () {
           assert.equal(
             'wrong',
             checkAnswer(
@@ -258,7 +258,7 @@ describe('gameLevel', function () {
 
   describe('recordGame', function () {
 
-    it('should return new record of game and decrease number of lives if it necessary', function () {
+    it('if answer is right should add a new record to the stats', function () {
       assert.equal(
         {
         livesTotal: 3,
@@ -299,7 +299,7 @@ describe('gameLevel', function () {
       );
     });
 
-    it('should return new record of game and decrease number of lives if it necessary', function () {
+    it('if answer is wrong should add a new record to the stats and decrease number of lives', function () {
       assert.equal(
         {
           livesTotal: 3,
